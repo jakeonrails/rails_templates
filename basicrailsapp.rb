@@ -107,9 +107,8 @@ after_bundler do
       gsub_file 'config/intializers/devise.rb', 'devise/orm/active_record', 'devise/orm/mongoid'
     when 'active_record'
       # Nothing to do
-      
-    generate 'devise user'
   end
+  generate 'devise user'
 end
 
 # >---------------------------------[ HAML ]----------------------------------<
@@ -128,9 +127,6 @@ say_recipe 'SASS'
 unless recipes.include? 'haml'
   gem 'haml', '>= 3.0.0'
 end
-
-
-
 
 # >-----------------------------[ Run Bundler ]-------------------------------<
 
