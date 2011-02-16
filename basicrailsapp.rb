@@ -2,7 +2,7 @@
 #  rails new APP_NAME -m http://railswizard.org/b1cded6a7474342d4bd0.rb  -T -J
 # >---------------------------------------------------------------------------<
 #
-#            _____       _ _   __          ___                  _ 
+#            _____       _ _   __          ___                  _
 #           |  __ \     (_) |  \ \        / (_)                | |
 #           | |__) |__ _ _| |___\ \  /\  / / _ ______ _ _ __ __| |
 #           |  _  // _` | | / __|\ \/  \/ / | |_  / _` | '__/ _` |
@@ -127,6 +127,20 @@ say_recipe 'SASS'
 unless recipes.include? 'haml'
   gem 'haml', '>= 3.0.0'
 end
+# >-----------------------------[ Guard       ]-------------------------------<
+
+say_recipe 'Guard'
+gem 'guard', :group => :test
+gem 'guard-bundler', :group => :test
+gem 'guard-cucumber', :group => :test
+gem 'guard-livereload', :group => :test
+
+after_bundler do
+  run 'guard init'
+  run 'guard init bundler'
+  run 'guard init cucumber'
+  run 'guard init livereload'
+end
 
 # >-----------------------------[ Run Bundler ]-------------------------------<
 
@@ -134,3 +148,4 @@ say_wizard "Running Bundler install. This will take a while."
 run 'bundle install'
 say_wizard "Running after Bundler callbacks."
 @after_blocks.each{|b| b.call}
+
